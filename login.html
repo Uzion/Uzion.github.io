@@ -1,0 +1,77 @@
+<!--
+   Adapted from
+   Book:    jQuery and JavaScript Phrasebook (by Brad Dayley)
+   Example: ch1307.html
+-->
+
+<html>
+  <head>
+    <title>Log In</title>
+
+    <script type="text/javascript"
+	    src="jQuery-and-JavaScript-js/jquery-2.0.3.min.js">
+    </script>
+
+    <meta name="robots" content="noindex, nofollow">
+  <!-- Include CSS File Here -->
+  <link rel="stylesheet" href="css/loginstyle.css"/>
+  <!-- Include CSS File Here -->
+
+  </head>
+
+  <body>
+    <center> <h1>Login Example</h1> </center>
+
+    <div class="container">
+    <div class="main">
+    <form id="loginForm">
+    <h2>Welcome to Online Tutor</h2>
+    <label>Username: </label>
+    <input type="text" name="user" /><br>
+
+    <label>Password: </label>
+    <input type="password" name="pw" /><br>
+    <input type="radio" name="userType" value="Student" /> Student
+    <input type="radio" name="userType" value="Tutor" /> Tutor
+
+    <input id="login" type="button"  value="Login" name="login"/>
+    </form>
+    </div>
+    </div>
+
+
+<!-- ============================================================ -->
+
+  <script>
+    function success(){ console.log("Login OK"); alert("Login Succeeded");
+      var radioValue = $("input[name='userType']:checked").val();
+      if (radioValue == "Student"){
+        window.open("index1.html");
+      }else{
+        if ($("#text").val() == "t1"){
+          window.open("index2.html");
+        }else{
+          window.open("index2.html");
+        }
+      }
+    }
+
+    function failure(){console.log("Login Failed");  alert("Login Failed"); }
+
+    function always(){ console.log("Login done"); alert("Login Request done"); }
+
+    function login(){
+      $.get("jQuery-and-JavaScript-login.php",
+       $("#loginForm").serialize()).done(success).fail(failure);
+      return false;
+    }
+
+// ------------------------------
+    $(document).ready(function(){
+      $("#login").click(login);
+    });
+
+</script>
+<!-- ============================================================ -->
+</body>
+</html>
